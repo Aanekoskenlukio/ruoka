@@ -1,2 +1,30 @@
-<meta http-equiv="refresh" content="0; url=http://www.jamix.fi/ruokalistat/?anro=95710&k=8&mt=1" />
-<h1>Ruokalista latautuu...</h1>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Äänekosken lukion ruokalista</title>
+    <style media="screen">
+      body {
+        margin:0;
+        padding:0;
+        overflow:hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="lista" src="http://www.jamix.fi/ruokalistat/?anro=95710&k=8&mt=1" width="600" height="600"></iframe>
+    <script type="text/javascript">
+      let frame = document.getElementById('lista');
+      let interval = 5; //Päivitystiheys
+
+      frame.height = window.innerHeight;
+      frame.width = window.innerWidth;
+      frame.style.border = 0;
+
+      console.log("Starting a loop with an interval of " + interval + " seconds.")
+      let timer = setInterval(function() {
+        console.log("Refreshing...");
+        frame.src = frame.src;
+      }, interval*1000);
+    </script>
+  </body>
+</html>
