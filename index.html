@@ -72,7 +72,7 @@
         r.innerHTML = "<br>Tarjolla vain ei-oota...<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
         ot.innerHTML = "Virhe!";
       } else {
-        ot.innerHTML = "Tarjolla " + dd + "." + mm ".";
+        ot.innerHTML = "Tarjolla " + dd + "." + mm + ".";
         dataObj = JSON.parse(data);
         var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
         var dataKasvis = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
