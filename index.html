@@ -6,15 +6,19 @@
       body {
         margin:0;
         padding:0;
-        background:#fff;
-        overflow:hidden;
+        background:#fff; //Taustan väri tulee määrittää TV:tä varten, oletusarvo Samsungissa on black
+        overflow:hidden; //Selain renderöi välillä ruututilaa vievät viertyspalkit. Poistetaan ne.
       }
       iframe { 
         width:1280px;
         height:720px;
         border:0px;
-        transform:scale(3.3); //Zoomaus-kerroin
+        transform:scale(3.3); //Zoomaus-kerroin*
         padding-top:60px;
+        /*
+         *Zoomaus ei toimi TV-selaimessa, sen vaikutus on nähtävissä vain Chrome-pohjaisissa selaimissa.
+          Zoomauksen toteuttaminen näyttää mahdottomalta ainakin CSS:n avulla.
+        */
       }
     </style>
   </head>
