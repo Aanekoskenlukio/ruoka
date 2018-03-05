@@ -9,6 +9,12 @@
         background:#fff; //Taustan väri tulee määrittää TV:tä varten, oletusarvo Samsungissa on black
         overflow:hidden; //Selain renderöi välillä ruututilaa vievät viertyspalkit. Poistetaan ne.
       }
+      h1 {
+        font-size:60px;
+        color:darkred;
+        text-align:center;
+        margin:60px;
+      }
       iframe { 
         width:1280px;
         height:720px;
@@ -23,6 +29,11 @@
     </style>
   </head>
   <body>
+    
+
+    <h1>Tämä on ruokalistan testinäkymä. Ruokalista on nähtävissä taas hetken kuluttua!</h1>
+
+    <!--
     <iframe id="lista" src="http://www.jamix.fi/ruokalistat/?anro=95710&k=8&mt=1" width="600" height="600"></iframe>
     <script type="text/javascript">
       let frame = document.getElementById('lista');
@@ -38,5 +49,6 @@
         frame.src = frame.src;
       }, interval*1000);
     </script>
+-->
   </body>
 </html>
