@@ -69,7 +69,7 @@
     $.get(url + pvm, function(data)
     {
       if (data == "[]") {
-        r.innerHTML = "Tarjolla vain ei-oota...<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
+        r.innerHTML = "<br>Tarjolla vain ei-oota...<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
         ot.innerHTML = "Virhe!";
       } else {
         dataObj = JSON.parse(data);
