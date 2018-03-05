@@ -2,49 +2,100 @@
   <head>
     <meta charset="utf-8">
     <title>Äänekosken lukion ruokalista</title>
-    <meta http-equiv="refresh" content="0; url=https://www.youtube.com/embed/Xy78bUU-76M?autoplay=1&loop=1&cc_load_policy=1rel=0&amp;controls=0&amp;showinfo=0&playlist=Xy78bUU-76M" />
+    <link
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    rel="stylesheet">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
     <style media="screen">
       body {
-        margin:0;
-        padding:0;
-        background:#fff; //Taustan väri tulee määrittää TV:tä varten, oletusarvo Samsungissa on black
-        overflow:hidden; //Selain renderöi välillä ruututilaa vievät viertyspalkit. Poistetaan ne.
+        background:#282828;
       }
       h1 {
-        font-size:70px;
+        font-size:100px !important;
+        margin-top:60px;
+      }
+      #ruoka {
         color:#fff;
-        text-align:center;
-        display:block;
-        height:100%;
-        width:100%;
-        background:#008080;
+        font-size:62px;
+        padding-left:150px;
       }
-      iframe { 
-        width:1280px;
-        height:720px;
-        border:0px;
-        padding-top:60px;
-      }
-      u {
-        text-decoration:none;
-        font-size:40px;
+      #ruoka i {
+        font-size:32px;
+        color:lime;
+        opacity:0.5;
+        padding-left:30px;
       }
     </style>
+    <script type="text/javascript">
+    setInterval(function() {
+      window.location.reload();
+    }, 300000);
+    </script>
   </head>
   <body>
-    
-<!--
-    <h1><br><br><br><span>Tämä on ruokalistan testinäkymä.<br><u>Ruokalista on nähtävissä taas hetken kuluttua!</u></span></h1>
--->
-    <script>
-      setInterval(function() {
-        console.log(1);
-        window.location.reload();
-      }, 120000); 
+    <h1 class="text-center text-primary">Ruokala tarjoaa tänään</h1>
+    <div class="container">
+      <br>
+      <div class="row">
+        <span id="ruoka"></span>
+      </div>
+    </div>
+    <script type="text/javascript">
+    //Päivämäärän laskenta
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //Tammikuu on 0:s kuukausi
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    }
+    if(mm<10) {
+        mm = '0'+mm
+    }
+
+    pvm = yyyy+mm+dd;
+    //pvm = "20180308";
+    console.log("Tänään on " + pvm);
+
+    var r = document.getElementById('ruoka');
+    var url = "https://cors.io?http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
+    var dataObj = {};
+    $.get(url + pvm, function(data)
+    {
+      if (data == "[]") {
+        r.innerHTML = "Virhe ruokalistan haussa!<br><small>Päivälle ei ole ruokalistaa, ruokailussa on poikkeuksia<br>tai järjestelmässä tapahtui virhe.</small>";
+      } else {
+        dataObj = JSON.parse(data);
+        var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
+        var dataKasvis = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
+        console.log(dataPerus);
+
+        var lista = [];
+        var allergiat = [];
+        var aineet = [];
+        var aine = "";
+
+        for (var i = 0; i < dataPerus.length; i++) {
+          lista.push(dataPerus[i]["name"]);
+          allergiat.push(dataPerus[i]["diets"]);
+
+          aine = dataPerus[i]["ingredients"].split(": ")[1];
+          aine = aine.split(",")[0];
+          aineet.push(aine);
+        }
+        console.log(lista);
+        console.log(aineet); //TODO: jotakin köyttöä tulevissa versioissa?
+
+        for (var j = 0; j < lista.length; j++) {
+          r.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>";
+        }
+      }
+    });
     </script>
-    
-
-    <iframe id="lista" src="http://www.jamix.fi/ruokalistat/?anro=95710&k=8&mt=1" width="600" height="600"></iframe>
-
   </body>
 </html>
