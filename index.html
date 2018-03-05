@@ -59,7 +59,7 @@
     }
 
     pvm = yyyy+mm+dd;
-    //pvm = "20180308";
+    pvm = "20180332";
     console.log("Tänään on " + pvm);
 
     var r = document.getElementById('ruoka');
@@ -68,7 +68,7 @@
     $.get(url + pvm, function(data)
     {
       if (data == "[]") {
-        r.innerHTML = "Virhe ruokalistan haussa!<br><small>Päivälle ei ole ruokalistaa, ruokailussa on poikkeuksia<br>tai järjestelmässä tapahtui virhe.</small>";
+        r.innerHTML = "Virhe!<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
       } else {
         dataObj = JSON.parse(data);
         var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
