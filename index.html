@@ -37,10 +37,19 @@
 
     <h1>Tämä on ruokalistan testinäkymä.<br>Ruokalista on nähtävissä taas hetken kuluttua!</h1>
 
+    <script>
+      
+      setInterval(function() {
+        window.location.reload();
+      }, 300000); 
+      
+    </script>
+    
     <!--
     <iframe id="lista" src="http://www.jamix.fi/ruokalistat/?anro=95710&k=8&mt=1" width="600" height="600"></iframe>
 
     <script type="text/javascript">
+      //Vanha script, korvattu ylläolevalla
       let frame = document.getElementById('lista');
       let interval = 600; //Päivitystiheys
 
