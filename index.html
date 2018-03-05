@@ -18,19 +18,11 @@
         width:100%;
         background:red;
       }
-      h1 span {
-        padding-top:100px; 
-      }
       iframe { 
         width:1280px;
         height:720px;
         border:0px;
-        //transform:scale(3.3); //Zoomaus-kerroin*
         padding-top:60px;
-        /*
-         *Zoomaus ei toimi TV-selaimessa, sen vaikutus on nähtävissä vain Chrome-pohjaisissa selaimissa.
-          Zoomauksen toteuttaminen näyttää mahdottomalta ainakin CSS:n avulla.
-        */
       }
     </style>
   </head>
@@ -40,32 +32,14 @@
     <h1><span>Tämä on ruokalistan testinäkymä.<br>Ruokalista on nähtävissä taas hetken kuluttua!</span></h1>
 
     <script>
-      
       setInterval(function() {
         console.log(1);
         window.location.reload();
       }, 5000); 
-      
     </script>
     
     <!--
     <iframe id="lista" src="http://www.jamix.fi/ruokalistat/?anro=95710&k=8&mt=1" width="600" height="600"></iframe>
-
-    <script type="text/javascript">
-      //Vanha script, korvattu ylläolevalla
-      let frame = document.getElementById('lista');
-      let interval = 600; //Päivitystiheys
-
-      frame.height = 1280; //Kovakoodattu koko, toimii tietokoneselaimilla, TV-selain vaatii CSS (yllä)
-      frame.width = 720;
-      frame.style.border = 0;
-
-      console.log("Starting a loop with an interval of " + interval + " seconds.")
-      let timer = setInterval(function() {
-        console.log("Refreshing...");
-        frame.src = frame.src;
-      }, interval*1000);
-    </script>
--->
+    -->
   </body>
 </html>
