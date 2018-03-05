@@ -37,7 +37,7 @@
     </script>
   </head>
   <body>
-    <h1 class="text-center text-primary">Ruokala tarjoaa tänään</h1>
+    <h1 id="ot" class="text-center text-primary">Ruokala tarjoaa tänään</h1>
     <div class="container">
       <br>
       <div class="row">
@@ -63,12 +63,14 @@
     console.log("Tänään on " + pvm);
 
     var r = document.getElementById('ruoka');
+    var ot = document.getElementById('ot');
     var url = "https://cors.io?http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
     var dataObj = {};
     $.get(url + pvm, function(data)
     {
       if (data == "[]") {
-        r.innerHTML = "Virhe!<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
+        r.innerHTML = "<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
+        ot.innerHTML = "Tarjolla vain ei-oota...";
       } else {
         dataObj = JSON.parse(data);
         var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
