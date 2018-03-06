@@ -101,7 +101,11 @@
         console.log(aineet); //TODO: jotakin köyttöä tulevissa versioissa?
 
         for (var j = 0; j < lista.length; j++) {
-          r.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>";
+          if (j == 0 || j == 1 || j == 2) {
+            r.innerHTML += "<u>" + lista[j] + "</u> <i>" + allergiat[j] + "</i>" + "<br>";
+          } else {
+            r.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>"; 
+          }
         }
       }
     }).fail(function() {
