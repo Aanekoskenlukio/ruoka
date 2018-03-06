@@ -64,7 +64,7 @@
 
     var r = document.getElementById('ruoka');
     var ot = document.getElementById('ot');
-    var url = "https://cors.io?http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
+    var url = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
     var dataObj = {};
     $.get(url + pvm, function(data)
     {
@@ -73,7 +73,8 @@
         ot.innerHTML = "Virhe!";
       } else {
         ot.innerHTML = "Tarjolla " + dd + "." + mm + ".";
-        dataObj = JSON.parse(data);
+        //dataObj = JSON.parse(data);
+        dataObj = data; //Miksi toimii?? EI TIETOA
         var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
         var dataKasvis = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
         console.log(dataPerus);
