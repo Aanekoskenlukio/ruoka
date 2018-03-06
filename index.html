@@ -99,6 +99,9 @@
           r.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>";
         }
       }
+    }).fail(function() {
+      r.innerHTML = "<br>Ruokalistaa ei voitu hakea.<br>Tämä on 404. JSON-tiedostoa ei löytynyt.</small>";
+      ot.innerHTML = "Beep-boop!";
     });
     </script>
   </body>
