@@ -11,30 +11,16 @@
     crossorigin="anonymous">
     </script>
     <style media="screen">
-      body {
-        background:#282828;
-      }
       h1 {
-        font-size:150px !important;
-        margin-top:60px;
+        font-size:100px !important;
+        margin:50px auto;
       }
-      #ruoka {
-        color:#fff;
-        font-size:72px;
-        padding-left:150px;
+      .food-menu {
+        font-size:52px;
       }
-      #ruoka i {
-        font-size:30px;
-        color:lime;
-        opacity:0.5;
-        padding-left:30px;
-      }
-      a {
-        font-size:20px;
-        color:#fff;
-      }
-      .container {
-        width:100% !important; 
+      .menu-container {
+        width:95%;
+        margin:0px auto;
       }
     </style>
     <script type="text/javascript">
@@ -44,12 +30,18 @@
     </script>
   </head>
   <body>
-    <a href="http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&type=table">Kuukauden ruokalista</a>
-    <h1 id="ot" class="text-center text-primary">Päivittää...</h1>
-    <div class="container">
+    <div class="menu-container">
+      <div class="rows">
+        <h1 id="ot" class="text-primary">Tarjolla 07.03.</h1>
+        <hr>
+      </div>
       <br>
       <div class="row">
-        <span id="ruoka"></span>
+        <div class="col food-menu" id="ruoka">
+        </div>
+        <div class="col food-menu">
+          Kasvispyörykät
+        </div>
       </div>
     </div>
     <script type="text/javascript">
