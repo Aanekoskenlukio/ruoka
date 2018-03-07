@@ -76,6 +76,7 @@
     var dataObj = {};
     $.get(url + pvm, function(data)
     {
+      console.log(data);
       if (data == "[]") {
         r.innerHTML = "<br>Tarjolla vain ei-oota...<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
         ot.innerHTML = "Virhe!";
@@ -85,7 +86,6 @@
         dataObj = data; //Miksi toimii?? EI TIETOA
         var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
         var dataKasvis = dataObj[0]["menuTypes"][0]["menus"][1]["days"][0]["mealoptions"][0]["menuItems"];
-        console.log(dataPerus);
 
         var lista = [];
         var allergiat = [];
