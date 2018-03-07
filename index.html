@@ -46,7 +46,7 @@
       <div class="row">
         <div class="col food-menu" id="ruoka">
         </div>
-        <div class="col food-menu">
+        <div class="col food-menu" id="kasvis">
           Virhe
         </div>
       </div>
@@ -70,6 +70,7 @@
     console.log("Tänään on " + pvm);
 
     var r = document.getElementById('ruoka');
+    var k = document.getElementById('kasvis');
     var ot = document.getElementById('ot');
     var url = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
     var dataObj = {};
@@ -83,7 +84,7 @@
         //dataObj = JSON.parse(data);
         dataObj = data; //Miksi toimii?? EI TIETOA
         var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
-        var dataKasvis = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
+        var dataKasvis = dataObj[0]["menuTypes"][0]["menus"][1]["days"][0]["mealoptions"][0]["menuItems"];
         console.log(dataPerus);
 
         var lista = [];
@@ -99,9 +100,7 @@
           aine = aine.split(",")[0];
           aineet.push(aine);
         }
-        console.log(lista);
-        console.log(aineet); //TODO: jotakin köyttöä tulevissa versioissa?
-
+        
         for (var j = 0; j < lista.length; j++) {
           if (j == 0 || j == 1 || j == 2) {
             r.innerHTML += "<u>" + lista[j] + "</u> <i>" + allergiat[j] + "</i>" + "<br>";
@@ -109,6 +108,29 @@
             r.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>"; 
           }
         }
+        
+        lista = [];
+        allergiat = [];
+        aineet = [];
+        aine = "";
+        
+        for (var i = 0; i < dataKasvis.length; i++) {
+          lista.push(dataKasvis[i]["name"]);
+          allergiat.push(dataKasvis[i]["diets"]);
+
+          aine = dataKasvis[i]["ingredients"].split(": ")[1];
+          aine = aine.split(",")[0];
+          aineet.push(aine);
+        }
+
+        for (var j = 0; j < lista.length; j++) {
+          if (j == 0 || j == 1 || j == 2) {
+            k.innerHTML += "<u>" + lista[j] + "</u> <i>" + allergiat[j] + "</i>" + "<br>";
+          } else {
+            k.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>"; 
+          }
+        }
+        
       }
     }).fail(function() {
       r.innerHTML = "<br>Ruokalistaa ei voitu hakea.<br><small>Tämä on 404. JSON-tiedostoa ei löytynyt.</small>";
