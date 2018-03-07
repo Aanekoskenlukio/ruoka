@@ -49,6 +49,12 @@
         <div class="col food-menu" id="kasvis">
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <br>
+          <span>Huomenna: </span><span class="text-primary" id="tm"></span>
+        </div>
+      </div>
     </div>
     <script type="text/javascript">
     //Päivämäärän laskenta
@@ -71,6 +77,7 @@
     var r = document.getElementById('ruoka');
     var k = document.getElementById('kasvis');
     var ot = document.getElementById('ot');
+    var hu = document.getElementById('tm');
     var url = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
     var dataObj = {};
     $.get(url + pvm, function(data)
@@ -91,6 +98,21 @@
         var allergiat = [];
         var aineet = [];
         var aine = "";
+        
+        var url2 = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
+        var pvm2 = "20180307";
+        $.get(url2 + pvm2, function(data2) {
+          if (data2 == "[]") {
+            hu.innerHTML = "virhe (2)";
+          } else {
+            var ruokaHuomenna = data2[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"][0]["name"];
+            console.log(ruokaHuomenna);
+          }
+        }).fail(function() {
+          hu.innerHTML = "virhe (1)";
+        });;
+        
+        var huomenna = dataPerusHuomenna[0]["name"];
 
         for (var i = 0; i < dataPerus.length; i++) {
           lista.push(dataPerus[i]["name"]);
