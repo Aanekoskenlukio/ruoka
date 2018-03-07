@@ -29,6 +29,9 @@
         color:forestgreen;
         font-size:29px;
       }
+      span {
+        font-size:40px;
+      }
     </style>
     <script type="text/javascript">
     setInterval(function() {
@@ -52,7 +55,7 @@
       <div class="row">
         <div class="col">
           <br>
-          <span>Huomenna: </span><span class="text-primary" id="tm"></span>
+          <span>Huomenna </span><span class="text-primary" id="tm"></span>
         </div>
       </div>
     </div>
@@ -103,10 +106,10 @@
         var pvm2 = "20180308";
         $.get(url2 + pvm2, function(data2) {
           if (data2 == "[]") {
-            hu.innerHTML = "virhe (2)";
+            hu.innerHTML = "ei tarjoilua";
           } else {
             var ruokaHuomenna = data2[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"][0]["name"];
-            console.log(ruokaHuomenna);
+            hu.innerHTML = ruokaHuomenna;
           }
         }).fail(function() {
           hu.innerHTML = "virhe (1)";
