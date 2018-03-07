@@ -103,7 +103,13 @@
         var aine = "";
         
         var url2 = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
-        var pvm2 = "20180308";
+        
+        var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        var day = currentDate.getDate()
+        var month = currentDate.getMonth() + 1
+        var year = currentDate.getFullYear()
+        var pvm2 = "" + year + month + day;
+        
         $.get(url2 + pvm2, function(data2) {
           if (data2 == "[]") {
             hu.innerHTML = "ei tarjoilua";
