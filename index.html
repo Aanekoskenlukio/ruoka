@@ -105,9 +105,17 @@
         var url2 = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
         
         var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-        var day = currentDate.getDate()
-        var month = currentDate.getMonth() + 1
-        var year = currentDate.getFullYear()
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        
+        if(day<10) {
+            day = '0'+day;
+        }
+        if(mm<10) {
+            month = '0'+month;
+        }
+        
+        var year = currentDate.getFullYear();
         var pvm2 = "" + year + month + day;
         
         $.get(url2 + pvm2, function(data2) {
