@@ -47,7 +47,6 @@
         <div class="col food-menu" id="ruoka">
         </div>
         <div class="col food-menu" id="kasvis">
-          Virhe
         </div>
       </div>
     </div>
@@ -80,6 +79,7 @@
       if (data == "[]") {
         r.innerHTML = "<br>Tarjolla vain ei-oota...<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
         ot.innerHTML = "Virhe!";
+        r.style.color = "orange";
       } else {
         ot.innerHTML = "Tarjolla " + dd + "." + mm + ".";
         //dataObj = JSON.parse(data);
@@ -135,6 +135,7 @@
     }).fail(function() {
       r.innerHTML = "<br>Ruokalistaa ei voitu hakea.<br><small>Tämä on 404. JSON-tiedostoa ei löytynyt.</small>";
       ot.innerHTML = "Beep-boop!";
+      r.style.color = "red";
     });
     </script>
   </body>
