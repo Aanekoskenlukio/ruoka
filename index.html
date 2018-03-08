@@ -135,6 +135,7 @@
           }
         }).fail(function() {
           hu.innerHTML = "virhe (1)";
+          hu.style.color = "red";
         });
 
         for (var i = 0; i < dataPerus.length; i++) {
@@ -178,8 +179,9 @@
         
       }
     }).fail(function() {
-      r.innerHTML = "<br>Ruokalistaa ei voitu hakea.<br><small>Tämä on 404. JSON-tiedostoa ei löytynyt.</small>";
-      ot.innerHTML = "Beep-boop!";
+      r.innerHTML = "<br>Ruokalistaa ei voitu hakea.<br><small>JSON-tiedostoa ei löytynyt.</small>";
+      ot.innerHTML = "Tapahtui virhe!";
+      ot.style.color = "orange";
       r.style.color = "red";
       hu.innerHTML = "virhe (3)";
     });
