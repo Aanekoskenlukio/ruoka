@@ -42,7 +42,7 @@
   <body>
     <div class="menu-container">
       <div class="rows">
-        <h1 id="ot" class="text-primary">Tarjolla 07.03.</h1>
+        <h1 id="ot" class="text-primary">Ruokala tarjoaa</h1>
       </div>
       <hr>
       <br>
@@ -99,7 +99,7 @@
         ot.innerHTML = "Virhe!";
         r.style.color = "orange";
       } else {
-        ot.innerHTML = "Tarjolla " + dd + "." + mm + ".";
+        ot.innerHTML = "Ruokala tarjoaa " + dd + "." + mm + ".";
         //dataObj = JSON.parse(data);
         dataObj = data; //Miksi toimii?? EI TIETOA
         var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
