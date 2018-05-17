@@ -2,14 +2,8 @@
   <head>
     <meta charset="utf-8">
     <title>Äänekosken lukion ruokalista</title>
-    <link
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    rel="stylesheet">
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
-    </script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <style media="screen">
       body {
         background-color:#ffffff;
@@ -40,16 +34,17 @@
       }
     </style>
     <script type="text/javascript">
+    //Update website every 4 hours
     setInterval(function() {
-      window.location.reload();
-    }, 400000);
+        window.location.reload();
+    }, 14400000);
     </script>
   </head>
   <body>
     <div class="menu-container">
       <div class="rows">
         <br>
-        <h1 id="ot" class="">Ruokala tarjoaa</h1>
+        <h1 id="title">Ruokala tarjoaa</h1>
       </div>
       <hr>
       <br>
@@ -62,136 +57,120 @@
         </div>
       </div>
       <div class="row">
-        <div class="col food-menu" id="ruoka">
+        <div class="col food-menu" id="regularMenu">
         </div>
-        <div class="col food-menu" id="kasvis">
+        <div class="col food-menu" id="vegetarianMenu">
         </div>
       </div>
       <div class="row">
         <div class="col">
           <br>
-          <span>Huomenna </span><span class="text-primary" id="tm"></span>
+          <span>Huomenna </span><span class="text-primary" id="regularMealTomorrow"></span>
         </div>
       </div>
     </div>
     <script type="text/javascript">
-    //Päivämäärän laskenta
+
+    //Declare HTML DOM variables
+    var menuTitle = document.getElementById('title');
+    var regularMenuElement = document.getElementById('regularMenu');
+    var vegetarianMenuElement = document.getElementById('vegetarianMenu');
+    var regularMealTomorrow = document.getElementById('regularMealTomorrow');
+
+
+
+    //Get dates in yyyymmdd format
     var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //Tammikuu on 0:s kuukausi
-    var yyyy = today.getFullYear();
+    var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 
-    if(dd<10) {
-        dd = '0'+dd
+    var dayToday = today.getDate();
+    var monthToday = today.getMonth() + 1; //January 0th
+    var yearToday = today.getFullYear();
+
+    var dayTomorrow = tomorrow.getDate();
+    var monthTomorrow = tomorrow.getMonth() + 1;
+    var yearTomorrow = tomorrow.getFullYear();
+
+    if(dayToday < 10) {
+        dayToday = '0' + dayToday;
     }
-    if(mm<10) {
-        mm = '0'+mm
+    if(monthToday < 10) {
+        monthToday = '0' + monthToday;
+    }
+    if(dayTomorrow < 10) {
+        dayTomorrow = '0' + dayTomorrow;
+    }
+    if(monthTomorrow < 10) {
+        monthTomorrow = '0' + monthTomorrow;
+    }
+    
+    var dateToday = "" + yearToday + monthToday + dayToday;
+    var dateTomorrow = "" + yearTomorrow + monthTomorrow + dayTomorrow;
+
+
+
+    //Mmake the returned array friendly for HTML
+    function parseData(menu) {
+        var dataString = "";
+
+        dataString += "<table>";
+        for (var i = 0; i < menu.length; i++) {
+            dataString += "<tr><td>";
+            dataString += menu[i]["name"];
+            dataString += "</td><td>";
+            dataString += menu[i]["diets"];
+            dataString += "</td></tr>";
+        }
+        dataString += "</table>";
+
+        return dataString;
     }
 
-    pvm = yyyy+mm+dd;
-    //pvm = "20180308";
-    console.log("Tänään on " + pvm);
 
-    var r = document.getElementById('ruoka');
-    var k = document.getElementById('kasvis');
-    var ot = document.getElementById('ot');
-    var hu = document.getElementById('tm');
-    var url = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
-    var dataObj = {};
-    $.get(url + pvm, function(data)
-    {
-      console.log(data);
-      if (data == "[]") {
-        r.innerHTML = "<br>Tarjolla vain ei-oota...<br>Ruokailussa poikkeuksia tai järjestelmässä tapahtui virhe.</small>";
-        ot.innerHTML = "Virhe!";
-        r.style.color = "orange";
-      } else {
-        ot.innerHTML = "Ruokala tarjoaa " + dd + "." + mm + ".";
-        //dataObj = JSON.parse(data);
-        dataObj = data; //Miksi toimii?? EI TIETOA
-        var dataPerus = dataObj[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
-        var dataKasvis = dataObj[0]["menuTypes"][2]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
 
-        var lista = [];
-        var allergiat = [];
-        var aineet = [];
-        var aine = "";
-        
-        var url2 = "http://crossorigin.me/http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
-        
-        var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-        var day = currentDate.getDate();
-        var month = currentDate.getMonth() + 1;
-        
-        if(day<10) {
-            day = '0'+day;
-        }
-        if(mm<10) {
-            month = '0'+month;
-        }
-        
-        var year = currentDate.getFullYear();
-        var pvm2 = "" + year + month + day;
-        
-        $.get(url2 + pvm2, function(data2) {
-          if (data2 == "[]") {
-            hu.innerHTML = "ei tarjoilua";
-          } else {
-            var ruokaHuomenna = data2[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"][0]["name"];
-            hu.innerHTML = ruokaHuomenna;
-          }
-        }).fail(function() {
-          hu.innerHTML = "virhe (1)";
-          hu.style.color = "red";
-        });
+    //Set request URL
+    var proxyUrl = "http://crossorigin.me/"; //TODO: eradicate proxy use
+    var menuUrl = "http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
+    var url = proxyUrl + menuUrl;
 
-        for (var i = 0; i < dataPerus.length; i++) {
-          lista.push(dataPerus[i]["name"]);
-          allergiat.push(dataPerus[i]["diets"]);
 
-          aine = dataPerus[i]["ingredients"].split(": ")[1];
-          aine = aine.split(",")[0];
-          aineet.push(aine);
-        }
-        
-        for (var j = 0; j < lista.length; j++) {
-          if (j == 0 || j == 1 || j == 2) {
-            r.innerHTML += "<u>" + lista[j] + "</u> <i>" + allergiat[j] + "</i>" + "<br>";
-          } else {
-            r.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>"; 
-          }
-        }
-        
-        lista = [];
-        allergiat = [];
-        aineet = [];
-        aine = "";
-        
-        for (var i = 0; i < dataKasvis.length; i++) {
-          lista.push(dataKasvis[i]["name"]);
-          allergiat.push(dataKasvis[i]["diets"]);
 
-          aine = dataKasvis[i]["ingredients"].split(": ")[1];
-          aine = aine.split(",")[0];
-          aineet.push(aine);
-        }
+    //Get today's menu
+    $.get(url + dateToday, function(data) {
+        //Parse response object into javascript arrays
+        //Second index number points to specific menu
+        var regularMenu = data[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
+        var vegetarianMenu = data[0]["menuTypes"][2]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
+                                               // ^ Menu index
 
-        for (var j = 0; j < lista.length; j++) {
-          if (j == 0 || j == 1 || j == 2) {
-            k.innerHTML += "<u>" + lista[j] + "</u> <i>" + allergiat[j] + "</i>" + "<br>";
-          } else {
-            k.innerHTML += lista[j] + " <i>" + allergiat[j] + "</i>" + "<br>"; 
-          }
-        }
-        
-      }
+        //Parse js arrays into HTML tables
+        var regularMenuString = parseData(regularMenu);
+        var vegetarianMenuString = parseData(vegetarianMenu);
+
+        //Modify HTML, print data on website
+        regularMenuElement.innerHTML = regularMenuString;
+        vegetarianMenuElement.innerHTML = vegetarianMenuString;
     }).fail(function() {
-      r.innerHTML = "<br>Ruokalistaa ei voitu hakea.<br><small>JSON-tiedostoa ei löytynyt.</small>";
-      ot.innerHTML = "Tapahtui virhe!";
-      ot.style.color = "orange";
-      r.style.color = "red";
-      hu.innerHTML = "virhe (3)";
+        //Show error
+        //menuTitle.style.color = "red";
+        //menuTitle.innerHTML = "Päivitetään..."
+        //Reload page and try again
+        window.location.reload();
     });
+
+
+
+    //Get tomorrow's primary meal
+    $.get(url + dateTomorrow, function(data) {
+        var regularMenu = data[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
+        regularMealTomorrow.innerHTML = regularMenu[0]["name"];
+    }).fail(function() {
+        //menuTitle.style.color = "red";
+        //menuTitle.innerHTML = "Päivitetään..."
+        //window.location.reload();
+        regularMealTomorrow.innerHTML = "virheellinen ruoka";
+    });
+
     </script>
   </body>
 </html>
