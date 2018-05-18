@@ -87,6 +87,8 @@ $.get(url + dateToday, function(data) {
 
 
 
+/* Feature deprecated
+
 //Get tomorrow's primary meal
 $.get(url + dateTomorrow, function(data) {
 	var regularMenu = data[0]["menuTypes"][0]["menus"][0]["days"][0]["mealoptions"][0]["menuItems"];
@@ -97,3 +99,5 @@ $.get(url + dateTomorrow, function(data) {
 	//window.location.reload();
 	regularMealTomorrow.innerHTML = "verkkovirhe 404";
 });
+
+*/
