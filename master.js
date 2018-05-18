@@ -79,10 +79,10 @@ $.get(url + dateToday, function(data) {
 	vegetarianMenuElement.innerHTML = vegetarianMenuString;
 }).fail(function() {
 	//Show error
-	//menuTitle.style.color = "red";
-	//menuTitle.innerHTML = "Päivitetään..."
+	menuTitle.style.color = "red";
+	menuTitle.innerHTML = "Verkkovirhe!"
 	//Reload page and try again
-	window.location.reload();
+	//window.location.reload();
 });
 
 
