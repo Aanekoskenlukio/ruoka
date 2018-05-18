@@ -95,5 +95,5 @@ $.get(url + dateTomorrow, function(data) {
 	//menuTitle.style.color = "red";
 	//menuTitle.innerHTML = "Päivitetään..."
 	//window.location.reload();
-	regularMealTomorrow.innerHTML = "virheellinen ruoka";
+	regularMealTomorrow.innerHTML = "verkkovirhe 404";
 });
