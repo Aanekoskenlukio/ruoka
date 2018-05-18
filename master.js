@@ -80,7 +80,8 @@ $.get(url + dateToday, function(data) {
 	vegetarianMenuElement.innerHTML = vegetarianMenuString;
 }).fail(function() {
 	//Show error
-	menuTitle.style.color = "red";
+	menuTitle.style.color = "black";
+	menuTitle.style.fontSize = "100px"; 
 	menuTitle.innerHTML = "Verkkovirhe!"
 	//Reload page and try again
 	//window.location.reload();
