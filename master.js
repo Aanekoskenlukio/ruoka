@@ -82,8 +82,8 @@ $.get(url + dateToday, function(data) {
 }).fail(function() {
 	//Show error
 	menuTitle.style.color = "black";
-	menuTitle.innerHTML = "Verkkovirhe!"
-	menuTitle.style.fontSize = "50px !important"; 
+	menuTitle.innerHTML = "Ruokalistaa ei saatu ladattua"
+	//menuTitle.style.fontSize = "50px !important"; 
 	for(var j = 0;j < subTitles.length;j++) {
 		subTitles[j].innerHTML = "";
 	}
