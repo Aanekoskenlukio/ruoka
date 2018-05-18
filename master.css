@@ -1,0 +1,36 @@
+body {
+background-color:#ffffff;
+background: url(https://peda.net/aanekoski/lukio/infotv/grafiikka:file/download/b41206d99dd2b379ce3664b88358fbde1fec666b/akitausta.jpg) no-repeat center center fixed;
+-webkit-background-size: cover;
+background-size: cover;
+}
+h1 {
+font-size:100px !important;
+margin:50px auto;
+}
+.food-menu {
+font-size:49px;
+}
+.menu-container {
+width:95%;
+margin:0px auto;
+}
+u {
+text-decoration:none; 
+}
+i {
+color:forestgreen;
+font-size:29px;
+}
+span {
+font-size:40px;
+}
+table {
+font-size:48px;
+}
+table u {
+text-decoration:none;
+font-size:30px;
+color:green;
+padding-left:20px;
+}
