@@ -3,6 +3,7 @@ var menuTitle = document.getElementById('title');
 var regularMenuElement = document.getElementById('regularMenu');
 var vegetarianMenuElement = document.getElementById('vegetarianMenu');
 var regularMealTomorrow = document.getElementById('regularMealTomorrow');
+var subTitles = document.getElementsByTagName('h3');
 
 
 
@@ -83,6 +84,9 @@ $.get(url + dateToday, function(data) {
 	menuTitle.style.color = "black";
 	menuTitle.style.fontSize = "50px"; 
 	menuTitle.innerHTML = "Verkkovirhe!"
+	for(let j = 0;subTitles.length;j++) {
+		subTitles[j].innerHTML = "";
+	}
 	//Reload page and try again
 	//window.location.reload();
 });
