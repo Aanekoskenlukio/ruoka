@@ -82,7 +82,7 @@ $.get(url + dateToday, function(data) {
 }).fail(function() {
 	//Show error
 	menuTitle.style.color = "black";
-	menuTitle.style.fontSize = "50px"; 
+	menuTitle.style.fontSize = "50px !important"; 
 	menuTitle.innerHTML = "Verkkovirhe!"
 	for(let j = 0;subTitles.length;j++) {
 		subTitles[j].innerHTML = "";
