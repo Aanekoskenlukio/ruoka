@@ -56,7 +56,7 @@ function parseData(menu) {
 
 
 //Set request URL
-var proxyUrl = "http://crossorigin.me/"; //TODO: eradicate proxy use
+var proxyUrl = "https://crossorigin.me/"; //TODO: eradicate proxy use
 var menuUrl = "http://www.jamix.fi/ruokalistapalvelu/rest/haku/menu/95710/8?lang=fi&date=";
 var url = proxyUrl + menuUrl;
 
