@@ -84,7 +84,7 @@ $.get(url + dateToday, function(data) {
 	menuTitle.style.color = "black";
 	menuTitle.style.fontSize = 50; 
 	menuTitle.innerHTML = "Verkkovirhe!"
-	for(let j = 0;j < subTitles.length;j++) {
+	for(var j = 0;j < subTitles.length;j++) {
 		subTitles[j].innerHTML = "";
 	}
 	//Reload page and try again
