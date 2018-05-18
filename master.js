@@ -81,7 +81,7 @@ $.get(url + dateToday, function(data) {
 }).fail(function() {
 	//Show error
 	menuTitle.style.color = "black";
-	menuTitle.style.fontSize = "100px"; 
+	menuTitle.style.fontSize = "50px"; 
 	menuTitle.innerHTML = "Verkkovirhe!"
 	//Reload page and try again
 	//window.location.reload();
