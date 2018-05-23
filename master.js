@@ -78,7 +78,7 @@ $.get(url + dateToday, function(data) {
 
 	//Modify HTML, print data on website
 	regularMenuElement.innerHTML = regularMenuString;
-	vegetarianMenuElement.innerHTML = vegetarianMenuString;
+	//vegetarianMenuElement.innerHTML = vegetarianMenuString; Ei näytetä kasvisruokalistaa!
 }).fail(function() {
 	//Show error
 	menuTitle.style.color = "black";
@@ -93,7 +93,7 @@ $.get(url + dateToday, function(data) {
 
 
 
-/* Feature deprecated
+/* Seuraavan päivän ruokalista pois käytöstä
 
 //Get tomorrow's primary meal
 $.get(url + dateTomorrow, function(data) {
